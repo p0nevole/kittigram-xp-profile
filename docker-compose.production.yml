@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    env_file:
+      - .env
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./kittygram_backend
+    env_file:
+      - .env
+    depends_on:
+      - db
+    volumes:
+      - static_value:/app/collected_static
+      - media_value:/app/media
+
+  frontend:
+    build: ./kittygram_frontend
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+      - frontend
+    volumes:
+      - static_value:/static
+      - media_value:/media
+
+volumes:
+  pg_data:
+  static_value:
+  media_value:
