@@ -21,7 +21,7 @@
 ## Клонировать репозиторий:
 
 ```bash
-git clone https://github.com/p0nevole/kittigram-xp-profile.git
+git clone -b feature/profile-xp https://github.com/p0nevole/kittigram-xp-profile.git
 cd kittigram-xp-profile
 ```
 
