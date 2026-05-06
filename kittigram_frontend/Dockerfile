@@ -1,11 +1,15 @@
-FROM python:3.12-slim
+FROM node:18-alpine as build
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY package*.json ./
 
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN npm install
 
 COPY . .
 
-CMD ["gunicorn", "kittygram_backend.wsgi:application", "--bind", "0.0.0.0:8000"]
+RUN npm run build
+
+FROM nginx:1.25-alpine
+
+COPY --from=build /app/build /usr/share/nginx/html

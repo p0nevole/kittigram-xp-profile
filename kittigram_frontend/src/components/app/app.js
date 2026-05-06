@@ -14,6 +14,7 @@ import { MainPage } from "../main-page/main-page";
 import { CardPage } from "../card-page/card-page";
 import { AddCardPage } from "../add-card-page/add-card-page";
 import { EditCardPage } from "../edit-card-page/edit-card-page";
+import ProfileXP from "../ProfileXP/ProfileXP";
 
 import styles from "./app.module.css";
 
@@ -41,6 +42,7 @@ function App() {
           <main className={styles.content}>
             <Switch>
               <ProtectedRoute exact path="/">
+                <ProfileXP />
                 <MainPage queryPage={queryPage} setQueryPage={setQueryPage} />
               </ProtectedRoute>
               <Route path="/signin">

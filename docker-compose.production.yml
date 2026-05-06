@@ -1,17 +1,15 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:13
     env_file:
-      - .env
+      - .env.example
     volumes:
       - pg_data:/var/lib/postgresql/data
 
   backend:
-    build: ./kittygram_backend
+    build: ./kittigram_backend
     env_file:
-      - .env
+      - .env.example
     depends_on:
       - db
     volumes:
@@ -19,7 +17,7 @@ services:
       - media_value:/app/media
 
   frontend:
-    build: ./kittygram_frontend
+    build: ./kittigram_frontend
 
   nginx:
     build: ./nginx

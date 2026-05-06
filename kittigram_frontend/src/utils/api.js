@@ -124,3 +124,33 @@ export const deleteCard = (id) => {
     return { status: false };
   });
 };
+
+export const getProfile = () => {
+  return fetch(`${URL}/api/profiles/me/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Token ${localStorage.getItem("auth_token")}`,
+    },
+  }).then(checkResponse);
+};
+
+export const getXpEvents = () => {
+  return fetch(`${URL}/api/profiles/me/events/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Token ${localStorage.getItem("auth_token")}`,
+    },
+  }).then(checkResponse);
+};
+
+export const getLeaderboard = () => {
+  return fetch(`${URL}/api/profiles/leaderboard/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Token ${localStorage.getItem("auth_token")}`,
+    },
+  }).then(checkResponse);
+};

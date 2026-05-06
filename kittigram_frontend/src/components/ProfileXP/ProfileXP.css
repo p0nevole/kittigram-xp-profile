@@ -1,0 +1,144 @@
+.profile-xp {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 760px;
+  margin: 24px auto;
+  padding: 24px;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+}
+
+.profile-xp__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-xp__title {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.profile-xp__username {
+  margin: 6px 0 0;
+  color: #666666;
+  font-size: 16px;
+}
+
+.profile-xp__level {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: #ffcc4d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-xp__level-number {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.profile-xp__level-text {
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+.profile-xp__stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.profile-xp__stat {
+  padding: 16px;
+  border-radius: 14px;
+  background: #f6f6f6;
+}
+
+.profile-xp__stat-value {
+  display: block;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.profile-xp__stat-label {
+  display: block;
+  margin-top: 4px;
+  color: #777777;
+  font-size: 14px;
+}
+
+.profile-xp__progress {
+  margin-bottom: 22px;
+}
+
+.profile-xp__progress-line {
+  height: 12px;
+  border-radius: 999px;
+  background: #eeeeee;
+  overflow: hidden;
+}
+
+.profile-xp__progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: #ffb800;
+}
+
+.profile-xp__progress-text {
+  margin: 8px 0 0;
+  color: #666666;
+  font-size: 14px;
+}
+
+.profile-xp__subtitle {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.profile-xp__event-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-xp__event {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.profile-xp__text {
+  margin: 0;
+  color: #777777;
+}
+
+.profile-xp__error {
+  margin: 0 0 12px;
+  color: #d93025;
+}
+
+.profile-xp__button {
+  margin-top: 18px;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #000000;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.profile-xp__button:hover {
+  opacity: 0.8;
+}
