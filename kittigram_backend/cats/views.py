@@ -4,6 +4,7 @@ from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
 from rest_framework.response import Response
 
+
 from .models import Achievement, Cat, Profile, XPActionRule
 from .permissions import IsAdminOrReadOnly, IsOwnerOrReadOnly
 from .serializers import (
@@ -13,8 +14,9 @@ from .serializers import (
     ProfileSerializer,
     XPActionRuleSerializer,
     XPEventSerializer,
+    AdminManualXPGrantSerializer,
 )
-from .services import add_xp
+from .services import add_manual_xp, add_xp
 
 
 class CatViewSet(viewsets.ModelViewSet):
@@ -136,6 +138,24 @@ class ProfileViewSet(viewsets.ReadOnlyModelViewSet):
 
         serializer = self.get_serializer(profiles, many=True)
         return Response(serializer.data)
+    
+    @action(
+    detail=False,
+    methods=('post',),
+    url_path='grant-xp',
+    permission_classes=(IsAdminUser,),
+    )
+    def grant_xp(self, request):
+        serializer = AdminManualXPGrantSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
+        profile = add_manual_xp(
+            user=serializer.validated_data['user_id'],
+            points=serializer.validated_data['points'],
+        )
+
+        response_serializer = self.get_serializer(profile)
+        return Response(response_serializer.data, status=status.HTTP_201_CREATED)
 
 class XPActionRuleViewSet(viewsets.ModelViewSet):
     queryset = XPActionRule.objects.all()

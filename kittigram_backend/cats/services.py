@@ -25,6 +25,11 @@ DEFAULT_XP_RULES = {
         'points': 30,
         'once_per_object': True,
     },
+    XPActionRule.MANUAL_GRANT: {
+        'title': 'Ручное начисление XP администратором',
+        'points': 1,
+        'once_per_object': False,
+    },
 }
 
 
@@ -75,4 +80,27 @@ def add_xp(user, action, object_id=None, multiplier=1):
 
     Profile.objects.filter(pk=profile.pk).update(xp=F('xp') + points)
     profile.refresh_from_db()
+    return profile
+
+
+@transaction.atomic
+def add_manual_xp(user, points):
+
+    if points <= 0:
+        raise ValueError('Количество XP должно быть положительным.')
+
+    rule = get_or_create_rule(XPActionRule.MANUAL_GRANT)
+    profile, _ = Profile.objects.select_for_update().get_or_create(user=user)
+
+    XPEvent.objects.create(
+        user=user,
+        rule=rule,
+        action=XPActionRule.MANUAL_GRANT,
+        points=points,
+        object_id=None,
+    )
+
+    Profile.objects.filter(pk=profile.pk).update(xp=F('xp') + points)
+    profile.refresh_from_db()
+
     return profile

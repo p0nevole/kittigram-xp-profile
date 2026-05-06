@@ -201,3 +201,15 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_recent_events(self, obj):
         events = obj.user.xp_events.select_related('rule').all()[:10]
         return XPEventSerializer(events, many=True).data
+
+class AdminManualXPGrantSerializer(serializers.Serializer):
+    user_id = serializers.IntegerField()
+    points = serializers.IntegerField(min_value=1, max_value=10000)
+
+    def validate_user_id(self, value):
+        try:
+            return User.objects.get(id=value)
+        except User.DoesNotExist as exc:
+            raise serializers.ValidationError(
+                'Пользователь с указанным id не найден.'
+            ) from exc

@@ -82,12 +82,14 @@ class XPActionRule(models.Model):
     CAT_UPDATED = 'cat_updated'
     ACHIEVEMENT_ADDED = 'achievement_added'
     IMAGE_UPLOADED = 'image_uploaded'
+    MANUAL_GRANT = 'manual_grant'
 
     ACTION_CHOICES = (
         (CAT_CREATED, 'Создание кота'),
         (CAT_UPDATED, 'Редактирование кота'),
         (ACHIEVEMENT_ADDED, 'Добавление достижения'),
         (IMAGE_UPLOADED, 'Добавление изображения'),
+        (MANUAL_GRANT, 'Ручное начисление XP администратором'),
     )
 
     code = models.CharField(
