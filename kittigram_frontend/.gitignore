@@ -21,3 +21,17 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+.env
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+media/
+collected_static/
+node_modules/
+build/
+.DS_Store
+.idea/
+.vscode/
