@@ -121,3 +121,25 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
 
 }
+
+SWAGGER_SETTINGS = {
+
+    'SECURITY_DEFINITIONS': {
+
+        'Token': {
+
+            'type': 'apiKey',
+
+            'name': 'Authorization',
+
+            'in': 'header',
+
+            'description': 'Введите: Token <ваш_токен>',
+
+        }
+
+    },
+
+    'USE_SESSION_AUTH': False,
+
+}
