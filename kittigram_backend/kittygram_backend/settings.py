@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'djoser',
     'cats.apps.CatsConfig',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
